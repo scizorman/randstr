@@ -50,7 +50,7 @@ func newWithConfig(l int, conf *Config) string {
 }
 
 func bitsIndex(chars []rune) uint {
-	bits := math.Ceil(math.Log(float64(len(chars)))) + 1
+	bits := math.Trunc(math.Log2(float64(len(chars)))) + 1
 	return uint(bits)
 }
 

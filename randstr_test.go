@@ -49,7 +49,7 @@ func Test_bitsIndex(t *testing.T) {
 			args: args{
 				[]rune(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`),
 			},
-			want: 6,
+			want: 7,
 		},
 	}
 	for _, tt := range tests {
@@ -89,7 +89,7 @@ func Test_maskIndex(t *testing.T) {
 			args: args{
 				[]rune(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`),
 			},
-			want: 63,
+			want: 127,
 		},
 	}
 	for _, tt := range tests {
@@ -129,7 +129,7 @@ func Test_maxIndex(t *testing.T) {
 			args: args{
 				[]rune(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`),
 			},
-			want: 10,
+			want: 9,
 		},
 	}
 	for _, tt := range tests {
