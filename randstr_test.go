@@ -7,10 +7,10 @@ import (
 
 func BenchmarkNew(b *testing.B) {
 	bt := map[string]string{
-		"Default":              `abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`,
-		"OnlyNumber":           `1234567890`,
-		"WithSpecialCharacter": `abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`,
-		"WithJapanese":         `あいうえおカキクケコ東京都大阪府ABCDEfghjk12345@%+\/`,
+		"Default":               `abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`,
+		"OnlyNumber":            `1234567890`,
+		"WithSpecialCharacters": `abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`,
+		"WithJapanese":          `あいうえおカキクケコ東京都大阪府ABCDEfghjk12345@%+\/`,
 	}
 
 	for n, char := range bt {
@@ -56,7 +56,7 @@ func TestNew(t *testing.T) {
 			want: `408027112802971279976969250732`,
 		},
 		{
-			name: "WithSpecialCharacter",
+			name: "WithSpecialCharacters",
 			args: args{
 				l: 30,
 				opts: []func(*Config){
@@ -122,7 +122,7 @@ func Test_newWithConfig(t *testing.T) {
 			want: `408027112802971279976969250732`,
 		},
 		{
-			name: "WithSpecialCharacter",
+			name: "WithSpecialCharacters",
 			args: args{
 				l: 30,
 				conf: &Config{
@@ -178,7 +178,7 @@ func Test_bitsIndex(t *testing.T) {
 			want: 4,
 		},
 		{
-			name: "WithSpecialCharacter",
+			name: "WithSpecialCharacters",
 			args: args{
 				[]rune(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`),
 			},
@@ -218,7 +218,7 @@ func Test_maskIndex(t *testing.T) {
 			want: 15,
 		},
 		{
-			name: "WithSpecialCharacter",
+			name: "WithSpecialCharacters",
 			args: args{
 				[]rune(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`),
 			},
@@ -258,7 +258,7 @@ func Test_maxIndex(t *testing.T) {
 			want: 15,
 		},
 		{
-			name: "WithSpecialCharacter",
+			name: "WithSpecialCharacters",
 			args: args{
 				[]rune(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`),
 			},
