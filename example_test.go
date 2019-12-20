@@ -25,7 +25,7 @@ func Example_number() {
 	// Output: 97301642757693321863
 }
 
-func Example_with_special_characters() {
+func Example_withSpecialCharacters() {
 	// For testing, set the seed to 1.
 	// So please use it without `randstr.WithRand()` if you do not set a specific seed.
 	chars := `abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`
