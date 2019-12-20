@@ -1,6 +1,7 @@
 # randstr
 
 [![Test Status](https://github.com/scizorman/randstr/workflows/test/badge.svg?branch=master)](https://github.com/scizorman/randstr/actions?workflow=test)
+[![codecov](https://codecov.io/gh/scizorman/randstr/branch/master/graph/badge.svg)](https://codecov.io/gh/scizorman/randstr)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 [![GoDoc](https://godoc.org/github.com/scizorman/randstr?status.svg)](https://godoc.org/github.com/scizorman/randstr)
 
