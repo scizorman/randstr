@@ -23,4 +23,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
     - name: Test
-      run: go test -cover -race ./...
+      run: go test -coverprofile c.out ./...
+    - name: Test and publish code coverage
+      uses: codecov/codecov-actions@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./c.out
