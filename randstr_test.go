@@ -1,7 +1,6 @@
 package randstr
 
 import (
-	"math/rand"
 	"testing"
 )
 
@@ -23,7 +22,7 @@ func BenchmarkNew(b *testing.B) {
 }
 
 func TestNew(t *testing.T) {
-	r := rand.New(rand.NewSource(1))
+	Seed(1)
 
 	type args struct {
 		l    int
@@ -38,9 +37,6 @@ func TestNew(t *testing.T) {
 			name: "Default",
 			args: args{
 				l: 30,
-				opts: []func(*Config){
-					WithRand(r),
-				},
 			},
 			want: `dtpsBCLKwhCGHLF9EoWyo1KFHeio1r`,
 		},
@@ -50,7 +46,6 @@ func TestNew(t *testing.T) {
 				l: 30,
 				opts: []func(*Config){
 					WithChars(`1234567890`),
-					WithRand(r),
 				},
 			},
 			want: `408027112802971279976969250732`,
@@ -61,7 +56,6 @@ func TestNew(t *testing.T) {
 				l: 30,
 				opts: []func(*Config){
 					WithChars(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`),
-					WithRand(r),
 				},
 			},
 			want: `mN\FyCD7eM/r\!zm1d:KpGue1/wtLu`,
@@ -72,7 +66,6 @@ func TestNew(t *testing.T) {
 				l: 30,
 				opts: []func(*Config){
 					WithChars(`あいうえおカキクケコ東京都大阪府ABCDEfghjk12345@%+\/`),
-					WithRand(r),
 				},
 			},
 			want: `コhECB2A4D%おBコhk\ケf+京うhキえククE東Eh`,
@@ -88,7 +81,7 @@ func TestNew(t *testing.T) {
 }
 
 func Test_newWithConfig(t *testing.T) {
-	r := rand.New(rand.NewSource(1))
+	Seed(1)
 
 	type args struct {
 		l    int
@@ -105,7 +98,6 @@ func Test_newWithConfig(t *testing.T) {
 				l: 30,
 				conf: &Config{
 					chars: defaultChars,
-					rand:  r,
 				},
 			},
 			want: `dtpsBCLKwhCGHLF9EoWyo1KFHeio1r`,
@@ -116,7 +108,6 @@ func Test_newWithConfig(t *testing.T) {
 				l: 30,
 				conf: &Config{
 					chars: []rune(`1234567890`),
-					rand:  r,
 				},
 			},
 			want: `408027112802971279976969250732`,
@@ -127,7 +118,6 @@ func Test_newWithConfig(t *testing.T) {
 				l: 30,
 				conf: &Config{
 					chars: []rune(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`),
-					rand:  r,
 				},
 			},
 			want: `lM+ExBC6eL\q+'ylZd?JoFteZ\vsKt`,
@@ -139,7 +129,6 @@ func Test_newWithConfig(t *testing.T) {
 				l: 30,
 				conf: &Config{
 					chars: []rune(`あいうえおカキクケコ東京都大阪府ABCDEfghjk12345@%+\/`),
-					rand:  r,
 				},
 			},
 			want: `コhECB2A4D%おBコhk\ケf+京うhキえククE東Eh`,

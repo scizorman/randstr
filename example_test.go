@@ -2,35 +2,37 @@ package randstr_test
 
 import (
 	"fmt"
-	"math/rand"
 
 	"github.com/scizorman/randstr"
 )
 
 func Example() {
-	// For testing, set the seed to 1.
-	// So please use it without `randstr.WithRand()` if you do not set a specific seed.
-	r := rand.New(rand.NewSource(1))
-	s := randstr.New(20, randstr.WithRand(r))
+	// Seeding with the same value results in the same random string each run.
+	// The default seed is time.Now().UnixNano(), so you can get a different
+	// strins if you do not call Seed.
+	randstr.Seed(1)
+	s := randstr.New(20)
 	fmt.Println(s)
 	// Output: CGHLF9EoWyo1KFHeio1r
 }
 
 func Example_number() {
-	// For testing, set the seed to 1.
-	// So please use it without `randstr.WithRand()` if you do not set a specific seed.
-	r := rand.New(rand.NewSource(1))
-	s := randstr.New(20, randstr.WithChars("1234567890"), randstr.WithRand(r))
+	// Seeding with the same value results in the same random string each run.
+	// The default seed is time.Now().UnixNano(), so you can get a different
+	// strins if you do not call Seed.
+	randstr.Seed(1)
+	s := randstr.New(20, randstr.WithChars("1234567890"))
 	fmt.Println(s)
 	// Output: 97301642757693321863
 }
 
 func Example_withSpecialCharacters() {
-	// For testing, set the seed to 1.
-	// So please use it without `randstr.WithRand()` if you do not set a specific seed.
+	// Seeding with the same value results in the same random string each run.
+	// The default seed is time.Now().UnixNano(), so you can get a different
+	// strins if you do not call Seed.
 	chars := `abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`
-	r := rand.New(rand.NewSource(1))
-	s := randstr.New(20, randstr.WithChars(chars), randstr.WithRand(r))
+	randstr.Seed(1)
+	s := randstr.New(20, randstr.WithChars(chars))
 	fmt.Println(s)
 	// Output: x42dht51DXM\S]}Y!q%_
 }
