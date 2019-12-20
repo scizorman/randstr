@@ -1,11 +1,12 @@
 package randstr
 
 import (
+	"math/rand"
 	"reflect"
 	"testing"
 )
 
-func TestWithCharacters(t *testing.T) {
+func TestWithChars(t *testing.T) {
 	type args struct {
 		str string
 	}
@@ -37,7 +38,7 @@ func TestWithCharacters(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			got := &Config{}
 			if WithChars(tt.args.str)(got); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("WithCharacters() = %v, want %v", got, tt.want)
+				t.Errorf("WithChars() = %v, want %v", got, tt.want)
 			}
 		})
 	}
