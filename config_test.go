@@ -1,10 +1,8 @@
 package randstr
 
 import (
-	"math/rand"
 	"reflect"
 	"testing"
-	"time"
 )
 
 func TestWithChars(t *testing.T) {
@@ -40,46 +38,6 @@ func TestWithChars(t *testing.T) {
 			got := &Config{}
 			if WithChars(tt.args.str)(got); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("WithChars() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
-func TestWithRand(t *testing.T) {
-	now := time.Now().UnixNano()
-
-	type args struct {
-		r *rand.Rand
-	}
-	tests := []struct {
-		name string
-		args args
-		want *Config
-	}{
-		{
-			name: "SeedNowUnixNano",
-			args: args{
-				r: rand.New(rand.NewSource(now)),
-			},
-			want: &Config{
-				rand: rand.New(rand.NewSource(now)),
-			},
-		},
-		{
-			name: "Seed1",
-			args: args{
-				r: rand.New(rand.NewSource(1)),
-			},
-			want: &Config{
-				rand: rand.New(rand.NewSource(1)),
-			},
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got := &Config{}
-			if WithRand(tt.args.r)(got); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("WithRand() = %v, want %v", got, tt.want)
 			}
 		})
 	}
