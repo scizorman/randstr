@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	randSrc           rand.Source = rand.NewSource(time.Now().UnixNano())
 	defaultChars []rune     = []rune(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`)
+	defaultRand  *rand.Rand = rand.New(rand.NewSource(time.Now().UnixNano()))
 )
 
 // New generates a random string which has the specified length.
@@ -19,6 +19,7 @@ var (
 func New(l int, opts ...func(*Config)) string {
 	conf := &Config{
 		chars: defaultChars,
+		rand:  defaultRand,
 	}
 	for _, opt := range opts {
 		opt(conf)
@@ -33,10 +34,10 @@ func newWithConfig(l int, conf *Config) string {
 	maxIdx := maxIndex(conf.chars)
 
 	chars := make([]rune, l)
-	cache, remain := randSrc.Int63(), maxIdx
+	cache, remain := conf.rand.Int63(), maxIdx
 	for i := l - 1; i >= 0; {
 		if remain == 0 {
-			cache, remain = randSrc.Int63(), maxIdx
+			cache, remain = conf.rand.Int63(), maxIdx
 		}
 		idx := int(cache & maskIdx)
 		if idx < len(conf.chars) {
