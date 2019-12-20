@@ -15,25 +15,25 @@ var (
 //
 // You can specify characters used to generate it.
 // The default characters is alphabets (Uppercase & Lowercase) and numbers.
-func New(n int, options ...func(*Config)) string {
+func New(l int, opts ...func(*Config)) string {
 	conf := &Config{
 		chars: defaultCharacters,
 	}
-	for _, option := range options {
-		option(conf)
+	for _, opt := range opts {
+		opt(conf)
 	}
 
-	return newWithConfig(n, conf)
+	return newWithConfig(l, conf)
 }
 
-func newWithConfig(n int, conf *Config) string {
+func newWithConfig(l int, conf *Config) string {
 	bitsIdx := bitsIndex(conf.chars)
 	maskIdx := maskIndex(conf.chars)
 	maxIdx := maxIndex(conf.chars)
 
-	chars := make([]rune, n)
+	chars := make([]rune, l)
 	cache, remain := randSrc.Int63(), maxIdx
-	for i := n - 1; i >= 0; {
+	for i := l - 1; i >= 0; {
 		if remain == 0 {
 			cache, remain = randSrc.Int63(), maxIdx
 		}
