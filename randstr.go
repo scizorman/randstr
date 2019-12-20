@@ -1,3 +1,4 @@
+// Package randstr provides you the generator of random strings.
 package randstr
 
 import (
