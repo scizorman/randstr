@@ -5,8 +5,8 @@ type Config struct {
 	chars []rune
 }
 
-// WithCharacters sets characters to use as a optional parameters.
-func WithCharacters(str string) func(*Config) {
+// WithChars sets characters to use as a optional parameters.
+func WithChars(str string) func(*Config) {
 	return func(conf *Config) {
 		chars := removeDuplicates([]rune(str))
 		conf.chars = chars

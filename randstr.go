@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	defaultCharacters []rune      = []rune("abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
 	randSrc           rand.Source = rand.NewSource(time.Now().UnixNano())
+	defaultChars []rune     = []rune(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`)
 )
 
 // New generates a random string which has the specified length.
@@ -18,7 +18,7 @@ var (
 // The default characters is alphabets (Uppercase & Lowercase) and numbers.
 func New(l int, opts ...func(*Config)) string {
 	conf := &Config{
-		chars: defaultCharacters,
+		chars: defaultChars,
 	}
 	for _, opt := range opts {
 		opt(conf)

@@ -14,6 +14,6 @@ func Example() {
 
 func Example_number() {
 	// Each run gives different results.
-	s := randstr.New(10, randstr.WithCharacters("1234567890"))
+	s := randstr.New(10, randstr.WithChars("1234567890"))
 	fmt.Println(s)
 }

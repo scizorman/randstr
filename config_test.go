@@ -17,26 +17,26 @@ func TestWithCharacters(t *testing.T) {
 		{
 			name: "NoDuplicates",
 			args: args{
-				str: "abcdefghijklmnopqrstuvwxyz",
+				str: `abcdefghijklmnopqrstuvwxyz`,
 			},
 			want: &Config{
-				chars: []rune("abcdefghijklmnopqrstuvwxyz"),
+				chars: []rune(`abcdefghijklmnopqrstuvwxyz`),
 			},
 		},
 		{
 			name: "Duplicates",
 			args: args{
-				str: "123456789012345",
+				str: `123456789012345`,
 			},
 			want: &Config{
-				chars: []rune("1234567890"),
+				chars: []rune(`1234567890`),
 			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got := &Config{}
-			if WithCharacters(tt.args.str)(got); !reflect.DeepEqual(got, tt.want) {
+			if WithChars(tt.args.str)(got); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("WithCharacters() = %v, want %v", got, tt.want)
 			}
 		})

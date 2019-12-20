@@ -15,7 +15,7 @@ func BenchmarkNew(b *testing.B) {
 	for n, char := range bt {
 		b.Run(n, func(b *testing.B) {
 			b.ResetTimer()
-			res := New(100, WithCharacters(char))
+			res := New(100, WithChars(char))
 			b.Logf("generated string: %s", res)
 		})
 	}
