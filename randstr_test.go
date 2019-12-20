@@ -5,18 +5,31 @@ import (
 )
 
 func BenchmarkNew(b *testing.B) {
-	bt := map[string]string{
-		"Default":               `abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`,
-		"OnlyNumber":            `1234567890`,
-		"WithSpecialCharacters": `abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`,
-		"WithJapanese":          `あいうえおカキクケコ東京都大阪府ABCDEfghjk12345@%+\/`,
+	benches := []struct {
+		name  string
+		chars string
+	}{
+		{
+			name:  "Default",
+			chars: `abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`,
+		},
+		{
+			name:  "OnlyNumber",
+			chars: `1234567890`,
+		},
+		{
+			name:  "WithSpecialCharacters",
+			chars: `abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`,
+		},
+		{
+			name:  "WithJapanese",
+			chars: `あいうえおカキクケコ東京都大阪府ABCDEfghjk12345@%+\/`,
+		},
 	}
-
-	for n, char := range bt {
-		b.Run(n, func(b *testing.B) {
+	for _, bb := range benches {
+		b.Run(bb.name, func(b *testing.B) {
 			b.ResetTimer()
-			res := New(100, WithChars(char))
-			b.Logf("generated string: %s", res)
+			New(30, WithChars(bb.chars))
 		})
 	}
 }
