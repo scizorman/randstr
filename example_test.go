@@ -21,7 +21,7 @@ func Example_number() {
 	// The default seed is time.Now().UnixNano(), so you can get a different
 	// strins if you do not call Seed.
 	randstr.Seed(1)
-	s := randstr.New(20, randstr.WithChars("1234567890"))
+	s := randstr.New(20, randstr.WithCharacters("1234567890"))
 	fmt.Println(s)
 	// Output: 97301642757693321863
 }
@@ -32,7 +32,7 @@ func Example_withSpecialCharacters() {
 	// strins if you do not call Seed.
 	chars := `abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`
 	randstr.Seed(1)
-	s := randstr.New(20, randstr.WithChars(chars))
+	s := randstr.New(20, randstr.WithCharacters(chars))
 	fmt.Println(s)
 	// Output: x42dht51DXM\S]}Y!q%_
 }

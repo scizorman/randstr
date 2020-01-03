@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	defaultChars []rune     = []rune(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`)
-	defaultRand  *rand.Rand = rand.New(rand.NewSource(time.Now().UnixNano()))
+	defaultCharacters []rune     = []rune(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`)
+	defaultRand       *rand.Rand = rand.New(rand.NewSource(time.Now().UnixNano()))
 )
 
 var globalRand *rand.Rand = defaultRand
@@ -27,7 +27,7 @@ func Seed(seed int64) {
 // The default characters is alphabets (Uppercase & Lowercase) and numbers.
 func New(l int, opts ...func(*Config)) string {
 	conf := &Config{
-		chars: defaultChars,
+		characters: defaultCharacters,
 	}
 	for _, opt := range opts {
 		opt(conf)
@@ -37,9 +37,9 @@ func New(l int, opts ...func(*Config)) string {
 }
 
 func newWithConfig(l int, conf *Config) string {
-	bitsIdx := bitsIndex(conf.chars)
-	maskIdx := maskIndex(conf.chars)
-	maxIdx := maxIndex(conf.chars)
+	bitsIdx := bitsIndex(conf.characters)
+	maskIdx := maskIndex(conf.characters)
+	maxIdx := maxIndex(conf.characters)
 
 	chars := make([]rune, l)
 	cache, remain := globalRand.Int63(), maxIdx
@@ -48,8 +48,8 @@ func newWithConfig(l int, conf *Config) string {
 			cache, remain = globalRand.Int63(), maxIdx
 		}
 		idx := int(cache & maskIdx)
-		if idx < len(conf.chars) {
-			chars[i] = conf.chars[idx]
+		if idx < len(conf.characters) {
+			chars[i] = conf.characters[idx]
 			i--
 		}
 		cache >>= bitsIdx

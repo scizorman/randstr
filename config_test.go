@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestWithChars(t *testing.T) {
+func TestWithCharacters(t *testing.T) {
 	type args struct {
 		str string
 	}
@@ -20,7 +20,7 @@ func TestWithChars(t *testing.T) {
 				str: `abcdefghijklmnopqrstuvwxyz`,
 			},
 			want: &Config{
-				chars: []rune(`abcdefghijklmnopqrstuvwxyz`),
+				characters: []rune(`abcdefghijklmnopqrstuvwxyz`),
 			},
 		},
 		{
@@ -29,14 +29,14 @@ func TestWithChars(t *testing.T) {
 				str: `123456789012345`,
 			},
 			want: &Config{
-				chars: []rune(`1234567890`),
+				characters: []rune(`1234567890`),
 			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got := &Config{}
-			if WithChars(tt.args.str)(got); !reflect.DeepEqual(got, tt.want) {
+			if WithCharacters(tt.args.str)(got); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("WithChars() = %v, want %v", got, tt.want)
 			}
 		})

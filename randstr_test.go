@@ -29,7 +29,7 @@ func BenchmarkNew(b *testing.B) {
 	for _, bb := range benches {
 		b.Run(bb.name, func(b *testing.B) {
 			b.ResetTimer()
-			New(30, WithChars(bb.chars))
+			New(30, WithCharacters(bb.chars))
 		})
 	}
 }
@@ -58,7 +58,7 @@ func TestNew(t *testing.T) {
 			args: args{
 				l: 30,
 				opts: []func(*Config){
-					WithChars(`1234567890`),
+					WithCharacters(`1234567890`),
 				},
 			},
 			want: `408027112802971279976969250732`,
@@ -68,7 +68,7 @@ func TestNew(t *testing.T) {
 			args: args{
 				l: 30,
 				opts: []func(*Config){
-					WithChars(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`),
+					WithCharacters(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`),
 				},
 			},
 			want: `mN\FyCD7eM/r\!zm1d:KpGue1/wtLu`,
@@ -78,7 +78,7 @@ func TestNew(t *testing.T) {
 			args: args{
 				l: 30,
 				opts: []func(*Config){
-					WithChars(`あいうえおカキクケコ東京都大阪府ABCDEfghjk12345@%+\/`),
+					WithCharacters(`あいうえおカキクケコ東京都大阪府ABCDEfghjk12345@%+\/`),
 				},
 			},
 			want: `コhECB2A4D%おBコhk\ケf+京うhキえククE東Eh`,
@@ -110,7 +110,7 @@ func Test_newWithConfig(t *testing.T) {
 			args: args{
 				l: 30,
 				conf: &Config{
-					chars: defaultChars,
+					characters: defaultCharacters,
 				},
 			},
 			want: `dtpsBCLKwhCGHLF9EoWyo1KFHeio1r`,
@@ -120,7 +120,7 @@ func Test_newWithConfig(t *testing.T) {
 			args: args{
 				l: 30,
 				conf: &Config{
-					chars: []rune(`1234567890`),
+					characters: []rune(`1234567890`),
 				},
 			},
 			want: `408027112802971279976969250732`,
@@ -130,7 +130,7 @@ func Test_newWithConfig(t *testing.T) {
 			args: args{
 				l: 30,
 				conf: &Config{
-					chars: []rune(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`),
+					characters: []rune(`abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`),
 				},
 			},
 			want: `lM+ExBC6eL\q+'ylZd?JoFteZ\vsKt`,
@@ -141,7 +141,7 @@ func Test_newWithConfig(t *testing.T) {
 			args: args{
 				l: 30,
 				conf: &Config{
-					chars: []rune(`あいうえおカキクケコ東京都大阪府ABCDEfghjk12345@%+\/`),
+					characters: []rune(`あいうえおカキクケコ東京都大阪府ABCDEfghjk12345@%+\/`),
 				},
 			},
 			want: `コhECB2A4D%おBコhk\ケf+京うhキえククE東Eh`,
