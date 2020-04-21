@@ -9,7 +9,7 @@ import (
 func Example() {
 	// Seeding with the same value results in the same random string each run.
 	// The default seed is time.Now().UnixNano(), so you can get a different
-	// strins if you do not call Seed.
+	// strings if you do not call Seed.
 	randstr.Seed(1)
 	s := randstr.New(20)
 	fmt.Println(s)
@@ -19,7 +19,7 @@ func Example() {
 func Example_number() {
 	// Seeding with the same value results in the same random string each run.
 	// The default seed is time.Now().UnixNano(), so you can get a different
-	// strins if you do not call Seed.
+	// strings if you do not call Seed.
 	randstr.Seed(1)
 	s := randstr.New(20, randstr.WithCharacters("1234567890"))
 	fmt.Println(s)
@@ -29,7 +29,7 @@ func Example_number() {
 func Example_withSpecialCharacters() {
 	// Seeding with the same value results in the same random string each run.
 	// The default seed is time.Now().UnixNano(), so you can get a different
-	// strins if you do not call Seed.
+	// strings if you do not call Seed.
 	chars := `abcdefgihijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@%+\/'!#$^?:(){}[]~-_`
 	randstr.Seed(1)
 	s := randstr.New(20, randstr.WithCharacters(chars))
