@@ -2,6 +2,8 @@ package randstr
 
 import (
 	"testing"
+
+	"github.com/google/go-cmp/cmp"
 )
 
 func BenchmarkNew(b *testing.B) {
@@ -86,8 +88,8 @@ func TestNew(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := New(tt.args.l, tt.args.opts...); got != tt.want {
-				t.Errorf("New() = %v, want %v", got, tt.want)
+			if got := New(tt.args.l, tt.args.opts...); !cmp.Equal(tt.want, got) {
+				t.Errorf("New() mismatch (-want +got):\n%s", cmp.Diff(tt.want, got))
 			}
 		})
 	}
@@ -150,7 +152,7 @@ func Test_newWithConfig(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := newWithConfig(tt.args.l, tt.args.conf); got != tt.want {
-				t.Errorf("newWithConfig() = %v, want %v", got, tt.want)
+				t.Errorf("newWithConfig() mismatch (-want +got):\n%s", cmp.Diff(tt.want, got))
 			}
 		})
 	}
@@ -190,7 +192,7 @@ func Test_bitsIndex(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := bitsIndex(tt.args.chars); got != tt.want {
-				t.Errorf("bitsIndex() = %v, want %v", got, tt.want)
+				t.Errorf("bitsIndex() mismatch (-want +got):\n%s", cmp.Diff(tt.want, got))
 			}
 		})
 	}
@@ -230,7 +232,7 @@ func Test_maskIndex(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := maskIndex(tt.args.chars); got != tt.want {
-				t.Errorf("maskIndex() = %v, want %v", got, tt.want)
+				t.Errorf("maskIndex() mismatch (-want +got):\n%s", cmp.Diff(tt.want, got))
 			}
 		})
 	}
@@ -270,7 +272,7 @@ func Test_maxIndex(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := maxIndex(tt.args.chars); got != tt.want {
-				t.Errorf("maxIndex() = %v, want %v", got, tt.want)
+				t.Errorf("maxIndex() mismatch (-want +got):\n%s", cmp.Diff(tt.want, got))
 			}
 		})
 	}

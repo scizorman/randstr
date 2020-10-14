@@ -1,8 +1,9 @@
 package randstr
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/google/go-cmp/cmp"
 )
 
 func TestWithCharacters(t *testing.T) {
@@ -33,11 +34,12 @@ func TestWithCharacters(t *testing.T) {
 			},
 		},
 	}
+	opt := cmp.AllowUnexported(Config{})
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got := &Config{}
-			if WithCharacters(tt.args.str)(got); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("WithChars() = %v, want %v", got, tt.want)
+			if WithCharacters(tt.args.str)(got); !cmp.Equal(tt.want, got, opt) {
+				t.Errorf("WithChars() mismatch (-want +got):\n%s", cmp.Diff(tt.want, got, opt))
 			}
 		})
 	}
@@ -69,8 +71,8 @@ func Test_removeDuplicates(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := removeDuplicates(tt.args.chars); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("removeDuplicates() = %v, want %v", got, tt.want)
+			if got := removeDuplicates(tt.args.chars); !cmp.Equal(tt.want, got) {
+				t.Errorf("removeDuplicates() mismatch (-want +got):\n%s", cmp.Diff(tt.want, got))
 			}
 		})
 	}
